@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Predict house price</title>
+<style>
+    body {
+        text-align: center;
+    }
+
+    button {
+        color: aliceblue;
+        background-color: blue;
+    }
+</style>
+</head>
+<body>
+    <h1>Enter requirements below:</h1>
+<form method="POST">
+    <label for="area">Area in SqFt:</label>
+    <input type="number" name="area">
+    <label for="bedroom">Number of bedrooms:</label>
+    <input type="number" name="bedroom">
+    <input type="submit" value="Submit">
+</form>
+<div>
+    <p style="color:green;">House price is: </p>
+    <p id="display">{{ prediction }}</p>
+</div>
+</body>
+</html>
