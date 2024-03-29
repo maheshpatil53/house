@@ -1,4 +1,3 @@
-archspec @ file:///croot/archspec_1709217642129/work
 blinker==1.7.0
 boltons @ file:///work/perseverance-python-buildout/croot/boltons_1698851177130/work
 Brotli @ file:///work/perseverance-python-buildout/croot/brotli-split_1698805593785/work
