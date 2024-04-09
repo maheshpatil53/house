@@ -3,8 +3,23 @@
 <head>
 <title>Predict house price</title>
 <style>
+    label{
+            display:inline-block;
+            width:200px;
+            margin-right:30px;
+            text-align:center;
+        }
+fieldset{
+border:none;
+width:500px;
+margin:0px auto;
+}
     body {
-        text-align: center;
+        text-align:center;
+        background-image:url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1896&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        background-attachment:fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 
     button {
@@ -14,17 +29,19 @@
 </style>
 </head>
 <body>
-    <h1>Enter requirements below:</h1>
+    <h1>Predict House Price in Pune</h1>
 <form method="POST">
-    <label for="area">Area in SqFt:</label>
-    <input type="number" name="area">
-    <label for="bedroom">Number of bedrooms:</label>
-    <input type="number" name="bedroom">
+    <fieldset>
+    <label for="area"><b>Enter area in SqFt:</b></label>
+    <input type="number" name="area"><br>
+    <label for="bedroom"><b>Enter number of bedrooms:</b></label>
+    <input type="number" name="bedroom"><br><br>
     <input type="submit" value="Submit">
+    </fieldset>
 </form>
 <div>
-    <p style="color:green;">House price is: </p>
-    <p id="display">{{ prediction }}</p>
+    <p><b>House price (Lacs) is: </b></p>
+    <p id="display"><b>{{ prediction }}</b></p>
 </div>
 </body>
 </html>
