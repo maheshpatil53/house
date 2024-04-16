@@ -3,6 +3,15 @@
 <head>
 <title>Predict house price</title>
 <style>
+    footer {
+    position: absolute;
+    bottom: 0;
+    width: 36%;
+    text-align: center;
+    background-color: rgb(72, 154, 180);
+    color: black;
+    font-family: "Helvetica";
+}
     label{
             display:inline-block;
             width:200px;
@@ -10,9 +19,11 @@
             text-align:center;
         }
 fieldset{
-border:none;
-width:500px;
-margin:0px auto;
+display: inline-block;
+border:thin solid #1d1d20;
+position: center;
+font-family:Arial, Helvetica, sans-serif;
+font-size:small;
 }
     body {
         text-align:center;
@@ -21,22 +32,30 @@ margin:0px auto;
         background-repeat: no-repeat;
         background-size: cover;
     }
-
     button {
         color: aliceblue;
         background-color: blue;
     }
+    h2 {
+  color: black;
+  margin-left: 40px;
+}
 </style>
 </head>
 <body>
-    <h1>Predict House Price in Pune</h1>
+    <h2 style="border:black; border-width:2px; border-style:solid;background-color: rgb(159, 180, 236); border-radius: 20px; font-family:Arial, Helvetica, sans-serif">
+        Predict House Price</h2>
+        <footer style="border:black; border-width:2px; border-style:solid;background-color: rgb(219, 220, 232); border-radius: 25px;">
+            <h3>How it works?</h3>
+            <p>This application uses a Linear Regression machine learning model to predict housing prices in a city (Currently available only for Pune). Model is trained with 12k+ historic data of properties sold across different areas of a city.<br>
+          </footer>
 <form method="POST">
     <fieldset>
-    <label for="area"><b>Enter area in SqFt:</b></label>
-    <input type="number" name="area"><br>
+    <label for="area"><b>Enter area:</b></label>
+    <input type="number" name="area" placeholder="in sqft"><br>
     <label for="bedroom"><b>Enter number of bedrooms:</b></label>
     <input type="number" name="bedroom"><br><br>
-    <label for="Area"><b>Choose Area:</b></label>
+    <label for="Area"><b>City area:</b></label>
     <select name="Area" id="Area">
         <option value="Baner">Baner</option>
         <option value="Camp">Camp</option>
@@ -44,6 +63,24 @@ margin:0px auto;
         <option value="Viman Nagar">Viman Nagar</option>
         <option value="Swargate">Swargate</option>
         <option value="Shivaji Nagar">Shivaji Nagar</option>
+        <option value="Aundh">Aundh</option>
+        <option value="Erandwane">Erandwane</option>
+        <option value="Deccan Gymkhana">Deccan Gymkhana</option>
+        <option value="Fatima Nagar">Fatima Nagar</option>
+        <option value="Fergusson College Road">Fergusson College Road</option>
+        <option value="Hadapsar">Hadapsar</option>
+        <option value="Kalyani Nagar">Kalyani Nagar</option>
+        <option value="Karve Nagar">Karve Nagar</option>
+        <option value="Katraj">Katraj</option>
+        <option value="Khadaki">Khadaki</option>
+        <option value="Kharadi">Kharadi</option>
+        <option value="Kondhwa">Kondhwa</option>
+        <option value="Koregaon Park">Koregaon Park</option>
+        <option value="Sinhagad Road">Sinhagad Road</option>
+        <option value="Wagholi">Wagholi</option>
+        <option value="Wanowrie">Wanowrie</option>
+        <option value="Warje">Warje</option>
+        <option value="Yerawada">Yerawada</option>
       </select>
     <input type="submit" value="Submit">
     </fieldset>
