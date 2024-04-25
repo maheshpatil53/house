@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="javascript.js"></script>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-GXV79YYZTG"></script>
 <script>
@@ -12,6 +13,63 @@
 </script>
 <title>Predict house price</title>
 <style>
+    .Submit {
+  align-items: center;
+  appearance: none;
+  border-radius: 4px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 1px -2px,rgba(0, 0, 0, .14) 0 2px 2px 0,rgba(0, 0, 0, .12) 0 1px 5px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: Roboto,sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  height: 36px;
+  justify-content: center;
+  letter-spacing: .0892857em;
+  line-height: normal;
+  min-width: 64px;
+  outline: none;
+  overflow: visible;
+  padding: 0 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  will-change: transform,opacity;
+}
+
+.Submit {
+  box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+}
+
+.Submit:disabled {
+  background-color: rgba(0, 0, 0, .12);
+  box-shadow: rgba(0, 0, 0, .2) 0 0 0 0, rgba(0, 0, 0, .14) 0 0 0 0, rgba(0, 0, 0, .12) 0 0 0 0;
+  color: rgba(0, 0, 0, .37);
+  cursor: default;
+  pointer-events: none;
+}
+
+.Submit:not(:disabled) {
+  background-color: #6200ee;
+}
+
+.Submit:focus {
+  box-shadow: rgba(0, 0, 0, .2) 0 2px 4px -1px, rgba(0, 0, 0, .14) 0 4px 5px 0, rgba(0, 0, 0, .12) 0 1px 10px 0;
+}
+
+.Submit:active {
+  box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
+  background: #A46BF5;
+}
     footer {
     position: absolute;
     bottom: 0;
@@ -49,6 +107,14 @@ font-size:small;
   color: black;
   margin-left: 40px;
 }
+#centerDiv{
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+#form_id{
+margin:auto;  
+}
 </style>
 </head>
 <body>
@@ -56,14 +122,15 @@ font-size:small;
         Predict House Price</h2>
         <footer style="border:black; border-width:2px; border-style:solid;background-color: rgb(219, 220, 232); border-radius: 25px;">
             <h3>How it works?</h3>
-            <p>This application uses a Linear Regression machine learning model to predict housing prices in a city (Currently available only for Pune). Model is trained with 12k+ historic data of properties sold across different areas of a city. For suggestions/improvements write to <b> maheshpatil53@gmail.com</b><br>
+            <p>This application uses a Linear Regression machine learning model to predict house price in a city (Currently available only for Pune). Model is trained with 12k+ historic data of properties sold across different areas of a city. For suggestions/improvements write to <b> maheshpatil53@gmail.com</b><br>
           </footer>
-<form method="POST">
+<div id="centerDiv">
+<form id="form_id" method="POST" onsubmit="return retainInput();">
     <fieldset>
     <label for="area"><b>Enter area:</b></label>
-    <input type="number" name="area" placeholder="in sqft"><br>
+    <input type="number" name="area" placeholder="in sqft" required><br>
     <label for="bedroom"><b>Enter number of bedrooms:</b></label>
-    <input type="number" name="bedroom"><br><br>
+    <input type="number" name="bedroom" required><br>
     <label for="Area"><b>City area:</b></label>
     <select name="Area" id="Area">
         <option value="Baner">Baner</option>
@@ -90,13 +157,13 @@ font-size:small;
         <option value="Wanowrie">Wanowrie</option>
         <option value="Warje">Warje</option>
         <option value="Yerawada">Yerawada</option>
-      </select>
-    <input type="submit" value="Submit">
+      </select><br><br><br>
+      <button class="Submit" role="button">Submit</button>
     </fieldset>
 </form>
+</div>
 <div>
-    <p><b>House price (Lacs) is: </b></p>
-    <p id="display"><b>{{ prediction }}</b></p>
+    <p><b>House price in (Lacs) Rs. is: {{ prediction }}</b></p>
 </div>
 </body>
 </html>

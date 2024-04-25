@@ -38,7 +38,8 @@ def home():
         new_input_df[encoded_cols] = enc.transform(new_input_df[['site_location']]).toarray()
         new_input_df=new_input_df[numeric_col+encoded_cols].to_numpy()
         prediction = model.predict(new_input_df)[0]
-        return render_template('index.html', prediction=prediction)
+        rounded_prediction = round(prediction, 2)
+        return render_template('index.html', prediction=rounded_prediction)
     else:
         return render_template('index.html')
   
