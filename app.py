@@ -22,7 +22,6 @@ def home():
         cursor = conn.cursor()
         cursor.execute('''INSERT INTO HPP (area_sqft, bedrooms, city_area) VALUES (?, ?, ?)''', (v1,v2,v3))
         conn.commit()
-        conn.close()
 
         new_input={'total_sqft':v1,'size':v2,'site_location':v3}
         new_input_df = pd.DataFrame([new_input])
