@@ -70,14 +70,13 @@
   box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
   background: #A46BF5;
 }
-    #chat-container {
-            width: 400px;
-            height: 500px;
-            border: 1px solid #ccc;
-            overflow-y: scroll;
-            padding: 10px;
-        }
-
+#chat-container {
+    width: 400px;
+    height: 200px;
+    border: 1px solid #ccc;
+    overflow-y: scroll;
+    padding: 10px;
+}
         .message {
             margin-bottom: 10px;
         }
@@ -146,9 +145,49 @@ margin:auto;
             <p>This application uses a Linear Regression machine learning model to predict house price in a city (Currently available only for Pune). Model is trained with 12k+ historic data of properties sold across different areas of a city. For suggestions/improvements write to <b> maheshpatil53@gmail.com</b><br>
           </footer>
 <div id="centerDiv">
-<h1>Real estate Chatbot</h1>
-    <div id="chat-container"></div>
-    <input type="text" id="user-input" placeholder="Type your message..." />
+<form id="form_id" method="POST" onsubmit="return retainInput();">
+    <fieldset>
+    <label for="area"><b>Enter area:</b></label>
+    <input type="number" name="area" placeholder="in sqft" required><br>
+    <label for="bedroom"><b>Enter number of bedrooms:</b></label>
+    <input type="number" name="bedroom" required><br>
+    <label for="Area"><b>City area:</b></label>
+    <select name="Area" id="Area">
+        <option value="Baner">Baner</option>
+        <option value="Camp">Camp</option>
+        <option value="Kothrud">Kothrud</option>
+        <option value="Viman Nagar">Viman Nagar</option>
+        <option value="Swargate">Swargate</option>
+        <option value="Shivaji Nagar">Shivaji Nagar</option>
+        <option value="Aundh">Aundh</option>
+        <option value="Erandwane">Erandwane</option>
+        <option value="Deccan Gymkhana">Deccan Gymkhana</option>
+        <option value="Fatima Nagar">Fatima Nagar</option>
+        <option value="Fergusson College Road">Fergusson College Road</option>
+        <option value="Hadapsar">Hadapsar</option>
+        <option value="Kalyani Nagar">Kalyani Nagar</option>
+        <option value="Karve Nagar">Karve Nagar</option>
+        <option value="Katraj">Katraj</option>
+        <option value="Khadaki">Khadaki</option>
+        <option value="Kharadi">Kharadi</option>
+        <option value="Kondhwa">Kondhwa</option>
+        <option value="Koregaon Park">Koregaon Park</option>
+        <option value="Sinhagad Road">Sinhagad Road</option>
+        <option value="Wagholi">Wagholi</option>
+        <option value="Wanowrie">Wanowrie</option>
+        <option value="Warje">Warje</option>
+        <option value="Yerawada">Yerawada</option>
+      </select><br><br><br>
+      <button class="Submit" role="button">Submit</button>
+    </fieldset>
+</form>
+</div>
+<div>
+    <p><b>House price in (Lacs) Rs. is: {{ prediction }}</b></p>
+</div>
+<fieldset>
+<div id="chat-container">
+<input type="text" id="user-input" placeholder="Type your real estate query here..." />
     <button id="send-btn">Send</button>
     <script>
         const chatContainer = document.getElementById('chat-container');
@@ -192,45 +231,7 @@ margin:auto;
             });
         }
     </script>
-<form id="form_id" method="POST" onsubmit="return retainInput();">
-    <fieldset>
-    <label for="area"><b>Enter area:</b></label>
-    <input type="number" name="area" placeholder="in sqft" required><br>
-    <label for="bedroom"><b>Enter number of bedrooms:</b></label>
-    <input type="number" name="bedroom" required><br>
-    <label for="Area"><b>City area:</b></label>
-    <select name="Area" id="Area">
-        <option value="Baner">Baner</option>
-        <option value="Camp">Camp</option>
-        <option value="Kothrud">Kothrud</option>
-        <option value="Viman Nagar">Viman Nagar</option>
-        <option value="Swargate">Swargate</option>
-        <option value="Shivaji Nagar">Shivaji Nagar</option>
-        <option value="Aundh">Aundh</option>
-        <option value="Erandwane">Erandwane</option>
-        <option value="Deccan Gymkhana">Deccan Gymkhana</option>
-        <option value="Fatima Nagar">Fatima Nagar</option>
-        <option value="Fergusson College Road">Fergusson College Road</option>
-        <option value="Hadapsar">Hadapsar</option>
-        <option value="Kalyani Nagar">Kalyani Nagar</option>
-        <option value="Karve Nagar">Karve Nagar</option>
-        <option value="Katraj">Katraj</option>
-        <option value="Khadaki">Khadaki</option>
-        <option value="Kharadi">Kharadi</option>
-        <option value="Kondhwa">Kondhwa</option>
-        <option value="Koregaon Park">Koregaon Park</option>
-        <option value="Sinhagad Road">Sinhagad Road</option>
-        <option value="Wagholi">Wagholi</option>
-        <option value="Wanowrie">Wanowrie</option>
-        <option value="Warje">Warje</option>
-        <option value="Yerawada">Yerawada</option>
-      </select><br><br><br>
-      <button class="Submit" role="button">Submit</button>
-    </fieldset>
-</form>
 </div>
-<div>
-    <p><b>House price in (Lacs) Rs. is: {{ prediction }}</b></p>
-</div>
+</fieldset>
 </body>
 </html>
