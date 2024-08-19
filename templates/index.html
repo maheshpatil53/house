@@ -70,6 +70,27 @@
   box-shadow: rgba(0, 0, 0, .2) 0 5px 5px -3px, rgba(0, 0, 0, .14) 0 8px 10px 1px, rgba(0, 0, 0, .12) 0 3px 14px 2px;
   background: #A46BF5;
 }
+    #chat-container {
+            width: 400px;
+            height: 500px;
+            border: 1px solid #ccc;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .user {
+            font-weight: bold;
+            color: blue;
+        }
+
+        .bot {
+            font-weight: bold;
+            color: green;
+        }
     footer {
     position: absolute;
     bottom: 0;
@@ -125,6 +146,52 @@ margin:auto;
             <p>This application uses a Linear Regression machine learning model to predict house price in a city (Currently available only for Pune). Model is trained with 12k+ historic data of properties sold across different areas of a city. For suggestions/improvements write to <b> maheshpatil53@gmail.com</b><br>
           </footer>
 <div id="centerDiv">
+<h1>Real estate Chatbot</h1>
+    <div id="chat-container"></div>
+    <input type="text" id="user-input" placeholder="Type your message..." />
+    <button id="send-btn">Send</button>
+    <script>
+        const chatContainer = document.getElementById('chat-container');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+    
+        sendBtn.addEventListener('click', sendMessage);
+        
+        function sendMessage() {
+            const userMessage = userInput.value.trim();
+            if (userMessage) {
+                displayMessage('user', userMessage);
+                sendMessageToServer(userMessage);
+                userInput.value = '';
+            }
+        }
+        
+        function displayMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.classList.add(sender);
+            messageElement.textContent = `${sender}: ${message}`;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+        
+        function sendMessageToServer(message) {
+            fetch('/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ question: message }),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                displayMessage('bot', data.response);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
 <form id="form_id" method="POST" onsubmit="return retainInput();">
     <fieldset>
     <label for="area"><b>Enter area:</b></label>
