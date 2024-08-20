@@ -10,6 +10,8 @@ from langchain.prompts import PromptTemplate
 import os
 import requests
 from bs4 import BeautifulSoup
+from dotenv import load_dotenv
+load_dotenv()
 
 prompt = open('website_text.txt', 'r',encoding='utf-8').read()
 
@@ -27,7 +29,7 @@ property_assistant_template = PromptTemplate(
     template=property_assistant_template 
     ) 
 
-llm = OpenAI(api_key="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") 
+llm = OpenAI(api_key=os.getenv("api_key")) 
 
 llm_chain = property_assistant_template | llm 
 
