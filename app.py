@@ -5,8 +5,8 @@ from flask import Flask, render_template, request,jsonify
 from sklearn import preprocessing
 from sklearn.linear_model import LinearRegression
 import sqlite3
-#from langchain_community.chat_models import ChatOpenAI
-from langchain_openai import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
+#from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 import os
 import requests
