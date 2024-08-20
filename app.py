@@ -12,9 +12,7 @@ import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 load_dotenv()
-
 prompt = open('website_text.txt', 'r',encoding='utf-8').read()
-
 property_assistant_template = prompt + """
 You are "Mr. Mahesh". 
 Your expertise is exclusively in providing information and advice about anything related to Real Estate in India. 
