@@ -5,13 +5,15 @@ from flask import Flask, render_template, request,jsonify
 from sklearn import preprocessing
 from sklearn.linear_model import LinearRegression
 import sqlite3
-from langchain_openai import OpenAI
-from langchain.prompts import PromptTemplate
+from langchain_community.llms import OpenAI
+#from langchain_openai import ChatOpenAI
+from langchain_core.prompts import PromptTemplate
 import os
 import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 load_dotenv()
+
 prompt = open('website_text.txt', 'r',encoding='utf-8').read()
 property_assistant_template = prompt + """
 You are "Mr. Mahesh". 
@@ -21,16 +23,12 @@ You do not provide information outside of this scope.
 Question: {question} 
 Answer: 
 """
-
 property_assistant_template = PromptTemplate( 
     input_variables=["question"], 
     template=property_assistant_template 
-    ) 
-
+    )
 llm = OpenAI(api_key=os.getenv("api_key")) 
-
 llm_chain = property_assistant_template | llm 
-
 def query_llm(question): 
     response=(llm_chain.invoke({'question': question}))
     return response
