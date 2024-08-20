@@ -71,9 +71,12 @@
   background: #A46BF5;
 }
 #chat-container {
+    position:fixed;
+    top: 100;
+    left: 30;
     width: 400px;
     height: 200px;
-    border: 1px solid #ccc;
+    border: 2px solid #191818;
     overflow-y: scroll;
     padding: 10px;
 }
@@ -185,7 +188,6 @@ margin:auto;
 <div>
     <p><b>House price in (Lacs) Rs. is: {{ prediction }}</b></p>
 </div>
-<fieldset>
 <div id="chat-container">
 <input type="text" id="user-input" placeholder="Type your real estate query here..." />
     <button id="send-btn">Send</button>
@@ -193,8 +195,13 @@ margin:auto;
         const chatContainer = document.getElementById('chat-container');
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
-    
+        
         sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+        sendBtn.click();
+            }
+        });
         
         function sendMessage() {
             const userMessage = userInput.value.trim();
@@ -232,6 +239,5 @@ margin:auto;
         }
     </script>
 </div>
-</fieldset>
 </body>
 </html>

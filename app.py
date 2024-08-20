@@ -1,14 +1,50 @@
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,jsonify
 from sklearn import preprocessing
 from sklearn.linear_model import LinearRegression
 import sqlite3
+from langchain_openai import OpenAI
+from langchain.prompts import PromptTemplate
+import os
+import requests
+from bs4 import BeautifulSoup
+
+prompt = open('website_text.txt', 'r',encoding='utf-8').read()
+
+property_assistant_template = prompt + """
+You are "Mr. Mahesh". 
+Your expertise is exclusively in providing information and advice about anything related to Real Estate in India. 
+This includes any general property related queries. 
+You do not provide information outside of this scope.
+Question: {question} 
+Answer: 
+"""
+
+property_assistant_template = PromptTemplate( 
+    input_variables=["question"], 
+    template=property_assistant_template 
+    ) 
+
+llm = OpenAI(api_key="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") 
+
+llm_chain = property_assistant_template | llm 
+
+def query_llm(question): 
+    response=(llm_chain.invoke({'question': question}))
+    return response
 
 app = Flask(__name__)
 df=pd.read_csv("dataframe/df")
 df = df[['total_sqft', 'size', 'site_location','price']]
+
+@app.route("/chatbot", methods=["POST"]) 
+def chatbot(): 
+    data = request.get_json() 
+    question = data["question"] 
+    response = query_llm(question) 
+    return jsonify({"response": response})
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
