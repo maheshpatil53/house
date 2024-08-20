@@ -5,8 +5,7 @@ from flask import Flask, render_template, request,jsonify
 from sklearn import preprocessing
 from sklearn.linear_model import LinearRegression
 import sqlite3
-from langchain_community.chat_models import ChatOpenAI
-#from langchain_openai import ChatOpenAI
+from langchain_openai import OpenAI
 from langchain_core.prompts import PromptTemplate
 import os
 import requests
@@ -27,7 +26,7 @@ property_assistant_prompt_template = PromptTemplate(
     input_variables=["question"], 
     template=property_assistant_template 
     )
-llm = ChatOpenAI(api_key=os.getenv("api_key")) 
+llm = OpenAI(api_key=os.getenv("api_key")) 
 llm_chain = property_assistant_prompt_template | llm
 def query_llm(question): 
     response=(llm_chain.invoke({'question': question}))
