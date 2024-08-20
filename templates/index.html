@@ -84,12 +84,12 @@
             margin-bottom: 10px;
         }
 
-        .user {
+        .Q {
             font-weight: bold;
             color: blue;
         }
 
-        .bot {
+        .Ans {
             font-weight: bold;
             color: green;
         }
@@ -206,7 +206,7 @@ margin:auto;
         function sendMessage() {
             const userMessage = userInput.value.trim();
             if (userMessage) {
-                displayMessage('user', userMessage);
+                displayMessage('Q', userMessage);
                 sendMessageToServer(userMessage);
                 userInput.value = '';
             }
@@ -231,7 +231,7 @@ margin:auto;
             })
             .then((response) => response.json())
             .then((data) => {
-                displayMessage('bot', data.response);
+                displayMessage('Ans', data.response);
             })
             .catch((error) => {
                 console.error('Error:', error);
