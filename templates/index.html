@@ -80,33 +80,44 @@
     overflow-y: scroll;
     padding: 10px;
 }
+#foot {
+    background-color: rgb(195, 227, 254);
+    position:fixed;
+    bottom: 0;
+    left: 30;
+    width: 400px;
+    height: 150px;
+    border: 2px solid #191818;
+    padding: 10px;
+}
+#HP{
+    position:relative;
+    text-align:center;
+    left: 547px;
+    width: 424px;
+    height: 80px;
+    border: 1px solid #191818;
+}
         .message {
             margin-bottom: 10px;
         }
 
-        .Q {
+        .User {
+            text-align: left;
             font-weight: bold;
-            color: blue;
+            color: black;
         }
 
-        .Ans {
+        .ChatAI {
+            text-align: right;
             font-weight: bold;
             color: green;
         }
-    footer {
-    position: absolute;
-    bottom: 0;
-    width: 36%;
-    text-align: center;
-    background-color: rgb(72, 154, 180);
-    color: black;
-    font-family: "Helvetica";
-}
     label{
             display:inline-block;
             width:200px;
             margin-right:30px;
-            text-align:center;
+            text-align:left;
         }
 fieldset{
 display: inline-block;
@@ -143,10 +154,10 @@ margin:auto;
 <body>
     <h2 style="border:black; border-width:2px; border-style:solid;background-color: rgb(159, 180, 236); border-radius: 20px; font-family:Arial, Helvetica, sans-serif">
         Predict House Price</h2>
-        <footer style="border:black; border-width:2px; border-style:solid;background-color: rgb(219, 220, 232); border-radius: 25px;">
-            <h3>How it works?</h3>
+        <div id="foot">
+            <p><b>How it works?</b></p>
             <p>This application uses a Linear Regression machine learning model to predict house price in a city (Currently available only for Pune). Model is trained with 12k+ historic data of properties sold across different areas of a city. For suggestions/improvements write to <b> maheshpatil53@gmail.com</b><br>
-          </footer>
+        </div>
 <div id="centerDiv">
 <form id="form_id" method="POST" onsubmit="return retainInput();">
     <fieldset>
@@ -185,9 +196,11 @@ margin:auto;
     </fieldset>
 </form>
 </div>
-<div>
-    <p><b>House price in (Lacs) Rs. is: {{ prediction }}</b></p>
+<div id="HP">
+    <p>House price in (Lacs) Rs. is: <b>~{{ prediction }}*</b></p>
+        <p style="font-size: small;">* Price estimated is for Under Construction/Pre-Const. properties and excludes Stamp duty, GST etc.</p>
 </div>
+<h4 style="font-family:Arial, Helvetica, sans-serif; position:fixed;top:250px; left:10px"<b>Chat with AI</b></h4>
 <div id="chat-container">
 <input type="text" id="user-input" placeholder="Type your real estate query here..." />
     <button id="send-btn">Send</button>
@@ -195,18 +208,17 @@ margin:auto;
         const chatContainer = document.getElementById('chat-container');
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
-        
+
         sendBtn.addEventListener('click', sendMessage);
         userInput.addEventListener("keyup", function(event) {
         if (event.key === "Enter") {
         sendBtn.click();
             }
         });
-        
         function sendMessage() {
             const userMessage = userInput.value.trim();
             if (userMessage) {
-                displayMessage('Q', userMessage);
+                displayMessage('User', userMessage);
                 sendMessageToServer(userMessage);
                 userInput.value = '';
             }
@@ -231,7 +243,7 @@ margin:auto;
             })
             .then((response) => response.json())
             .then((data) => {
-                displayMessage('Ans', data.response);
+                displayMessage('ChatAI', data.response);
             })
             .catch((error) => {
                 console.error('Error:', error);
